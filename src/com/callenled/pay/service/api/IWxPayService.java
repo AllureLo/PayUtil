@@ -1,5 +1,6 @@
 package com.callenled.pay.service.api;
 
+import com.callenled.pay.config.BasePayConfig;
 import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.service.exception.PayApiException;
 import com.callenled.pay.util.RequestUtil;
@@ -21,11 +22,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class IWxPayService {
 
-    protected WxPayClient wxPayClient;
-
-    public IWxPayService(BaseWxPayConfig config) {
-        this.wxPayClient = new DefaultWxPayClient(config);
-    }
     /**
      * 交易类型
      * JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付，统一下单接口trade_type的传参可参考这里
@@ -35,6 +31,12 @@ public class IWxPayService {
     protected static final String TRADE_TYPE_APP =  "APP";
     protected static final String TRADE_TYPE_NATIVE =  "NATIVE";
 
+    protected WxPayClient wxPayClient;
+
+    public IWxPayService(BasePayConfig config) {
+        this.wxPayClient = new DefaultWxPayClient(config);
+    }
+
     /**
      * 外部商户小程序或公众号唤起快捷SDK创建订单并支付
      * @param outTradeNo 商户订单号
@@ -43,7 +45,7 @@ public class IWxPayService {
      * @param notifyUrl 通知地址
      * @param openId 用户标识
      * @param httpServletRequest http请求
-     * @return
+     * @return orderModel
      * @throws PayApiException
      */
     public JsApiOrderModel jsApiOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {

@@ -1,5 +1,6 @@
 package com.callenled.pay.wechat;
 
+import com.callenled.pay.config.BasePayConfig;
 import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.util.FieldUtil;
 import com.callenled.pay.util.HttpUtil;
@@ -18,8 +19,8 @@ public class DefaultWxPayClient implements WxPayClient {
 
     private BaseWxPayConfig config;
 
-    public DefaultWxPayClient(BaseWxPayConfig config) {
-        this.config = config;
+    public DefaultWxPayClient(BasePayConfig config) {
+        this.config = (BaseWxPayConfig) config;
     }
 
     @Override

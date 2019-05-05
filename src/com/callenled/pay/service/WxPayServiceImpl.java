@@ -1,7 +1,7 @@
 package com.callenled.pay.service;
 
 
-import com.callenled.pay.config.BaseWxPayConfig;
+import com.callenled.pay.config.BasePayConfig;
 import com.callenled.pay.service.api.IPayService;
 import com.callenled.pay.service.api.IWxPayService;
 import com.callenled.pay.service.exception.PayApiException;
@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletRequest;
  * @Author: Callenld
  * @Date: 19-4-29
  */
-public class WxPayService extends IWxPayService implements IPayService {
+public class WxPayServiceImpl extends IWxPayService implements IPayService {
 
-    public WxPayService(BaseWxPayConfig config) {
+    public WxPayServiceImpl(BasePayConfig config) {
         super(config);
     }
 

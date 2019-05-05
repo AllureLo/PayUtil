@@ -23,15 +23,15 @@ import static com.alipay.api.AlipayConstants.CHARSET_UTF8;
  * @Author: Callenld
  * @Date: 19-4-29
  */
-public class AlipayService implements IPayService {
+public class AlipayServiceImpl implements IPayService {
 
-    private BasePayConfig config;
+    private BaseAlipayConfig config;
 
     private AlipayClient alipayClient;
 
-    public AlipayService(BaseAlipayConfig config) {
-        this.config = config;
-        this.alipayClient = new DefaultAlipayClient(config.getServerUrl(), config.getAppID(), config.getPrivateKey(), "json", CHARSET_UTF8, config.getPublicKey(), "RSA2");
+    public AlipayServiceImpl(BasePayConfig config) {
+        this.config = (BaseAlipayConfig) config;
+        this.alipayClient = new DefaultAlipayClient(this.config.getServerUrl(), this.config.getAppID(), this.config.getPrivateKey(), "json", CHARSET_UTF8, this.config.getPublicKey(), "RSA2");
     }
 
     @Override

@@ -17,7 +17,7 @@ public interface IPayService {
      * @param totalAmount 支付金额
      * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
-     * @return
+     * @return Object
      */
     Object appOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException;
 
@@ -28,7 +28,7 @@ public interface IPayService {
      * @param totalAmount 支付金额
      * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
-     * @return
+     * @return String
      */
     String scanOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException;
 }
