@@ -1,8 +1,8 @@
 package com.callenled.pay.util;
 
-import callenled.pay.annotations.MappingValueAnno;
-import callenled.pay.wechat.api.BaseWxPayModel;
-import callenled.pay.wechat.api.WxPayApiException;
+import com.callenled.pay.annotations.MappingValueAnno;
+import com.callenled.pay.wechat.api.WxPayApiException;
+import com.callenled.util.GsonUtil;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -36,7 +36,7 @@ public class WxPayUtil {
         Map<String, Object> map = GsonUtil.gsonToMaps(json);
         // 对所有传入参数按照字段名的 ASCII 码从小到大排序（字典序）
         List<Map.Entry<String, Object>> infoIds = new ArrayList<>(map.entrySet());
-        infoIds.sort(Comparator.comparing(o -> (o.getKey())));
+        infoIds.sort(Comparator.comparing(Map.Entry::getKey));
         return createSign(infoIds, key);
     }
 
