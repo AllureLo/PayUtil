@@ -1,7 +1,7 @@
 package com.callenled.pay.wechat.model;
 
-import com.callenled.pay.util.GsonUtil;
 import com.callenled.pay.wechat.api.BaseWxPayModel;
+import com.callenled.util.GsonUtil;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -278,7 +278,6 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         this.mchId = mchId;
     }
 
-    @Deprecated
     public void setTotalAmount(Double totalAmount) {
         //乘数
         BigDecimal multiplier = new BigDecimal(100);
@@ -288,7 +287,6 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         this.setTotalFee(multiplicand.intValue());
     }
 
-    @Deprecated
     public void setSceneInfo(String id, String name, String areaCode, String address) {
         SceneInfo info = new SceneInfo(id, name, areaCode, address);
         this.setSceneInfo(GsonUtil.gsonString(info));

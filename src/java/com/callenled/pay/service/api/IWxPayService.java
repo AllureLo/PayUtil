@@ -1,13 +1,11 @@
 package com.callenled.pay.service.api;
 
 import com.callenled.pay.config.BasePayConfig;
-import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.service.exception.PayApiException;
 import com.callenled.pay.util.RequestUtil;
 import com.callenled.pay.wechat.DefaultWxPayClient;
 import com.callenled.pay.wechat.api.WxPayApiException;
 import com.callenled.pay.wechat.api.WxPayClient;
-import com.callenled.pay.wechat.model.AppOrderModel;
 import com.callenled.pay.wechat.model.JsApiOrderModel;
 import com.callenled.pay.wechat.model.WxPayUnifiedOrderModel;
 import com.callenled.pay.wechat.request.WxPayUnifiedOrderRequest;

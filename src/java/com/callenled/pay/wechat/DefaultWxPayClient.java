@@ -3,9 +3,9 @@ package com.callenled.pay.wechat;
 import com.callenled.pay.config.BasePayConfig;
 import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.util.FieldUtil;
-import com.callenled.pay.util.HttpUtil;
 import com.callenled.pay.util.WxPayUtil;
 import com.callenled.pay.wechat.api.*;
+import com.callenled.util.HttpUtil;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -47,24 +47,19 @@ public class DefaultWxPayClient implements WxPayClient {
         //生成xml
         String xml = WxPayUtil.object2Xml(model);
         //http请求微信接口
-        BaseWxPayResponse response;
-        try {
-            if (request.isCert()) {
-                xml = HttpUtil.builder()
-                        .ajaxJson(xml)
-                        .getHttpClient(config.getCertContext())
-                        .doHttp(config.getUrl(request.getUrl()), request.getHttps())
-                        .toJson();
-            } else {
-                xml = HttpUtil.builder()
-                        .ajaxJson(xml)
-                        .doHttp(config.getUrl(request.getUrl()), request.getHttps())
-                        .toJson();
-            }
-            response = WxPayUtil.xml2Object(xml, request.getClazz(), request.signature(), config.getKey());
-        } catch (IOException | URISyntaxException e) {
-            throw new WxPayApiException(e.getMessage(), e);
+        if (request.isCert()) {
+            xml = HttpUtil.builder()
+                    .ajaxJson(xml)
+                    .setSSLContext(config.getCertContext())
+                    .doHttp(config.getUrl(request.getUrl()), request.getHttps())
+                    .toJson();
+        } else {
+            xml = HttpUtil.builder()
+                    .ajaxJson(xml)
+                    .doHttp(config.getUrl(request.getUrl()), request.getHttps())
+                    .toJson();
         }
+        BaseWxPayResponse response = WxPayUtil.xml2Object(xml, request.getClazz(), request.signature(), config.getKey());
         if (!response.isReturnSuccess()) {
             throw new WxPayApiException(response.getReturnMsg());
         } else if (!response.isResultSuccess()) {

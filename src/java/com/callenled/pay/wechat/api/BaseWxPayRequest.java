@@ -1,6 +1,6 @@
 package com.callenled.pay.wechat.api;
 
-import com.callenled.pay.util.HttpUtil.Https;
+import com.callenled.util.HttpUtil.Https;
 
 /**
  * @Author: Callenld

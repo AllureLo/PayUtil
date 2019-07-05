@@ -84,12 +84,10 @@ public abstract class BaseWxPayResponse implements Serializable {
         this.errCodeDes = errCodeDes;
     }
 
-    @Deprecated
     public boolean isReturnSuccess() {
         return SUCCESS.equals(returnCode);
     }
 
-    @Deprecated
     public boolean isResultSuccess() {
         return SUCCESS.equals(resultCode);
     }

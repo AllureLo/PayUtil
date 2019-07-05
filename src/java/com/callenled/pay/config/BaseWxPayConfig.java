@@ -1,15 +1,13 @@
 package com.callenled.pay.config;
 
-import com.callenled.pay.util.HttpUtil;
 import com.callenled.pay.util.WxPayUtil;
 import com.callenled.pay.wechat.api.WxPayApiException;
 import com.callenled.pay.wechat.model.WxPayGetSignKeyModel;
 import com.callenled.pay.wechat.response.WxPayGetSignKeyrResponse;
+import com.callenled.util.HttpUtil;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.net.ssl.SSLContext;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Objects;
 
 /**
@@ -120,15 +118,11 @@ public abstract class BaseWxPayConfig extends BasePayConfig {
         String sign = WxPayUtil.createSign(model, getAppKey());
         model.setSign(sign);
         String xml = WxPayUtil.object2Xml(model);
-        try {
-            xml = HttpUtil.builder()
-                    .ajaxJson(xml)
-                    .doHttp(SIGN_KEY, HttpUtil.Https.POST)
-                    .toJson();
-        } catch (IOException | URISyntaxException e) {
-            throw new WxPayApiException(e.getMessage(), e);
-        }
-        WxPayGetSignKeyrResponse response = WxPayUtil.xml2Object(xml, WxPayGetSignKeyrResponse.class);
+        String result = HttpUtil.builder()
+                .ajaxJson(xml)
+                .doHttp(SIGN_KEY, HttpUtil.Https.POST)
+                .toJson();
+        WxPayGetSignKeyrResponse response = WxPayUtil.xml2Object(result, WxPayGetSignKeyrResponse.class);
         if (!response.isReturnSuccess()) {
             throw new WxPayApiException(response.getReturnMsg());
         }
