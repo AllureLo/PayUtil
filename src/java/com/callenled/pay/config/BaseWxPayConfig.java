@@ -1,7 +1,7 @@
 package com.callenled.pay.config;
 
 import com.callenled.pay.util.WxPayUtil;
-import com.callenled.pay.wechat.api.WxPayApiException;
+import com.callenled.pay.wechat.exception.WxPayApiException;
 import com.callenled.pay.wechat.model.WxPayGetSignKeyModel;
 import com.callenled.pay.wechat.response.WxPayGetSignKeyrResponse;
 import com.callenled.util.HttpUtil;
@@ -69,7 +69,7 @@ public abstract class BaseWxPayConfig extends BasePayConfig {
      */
     public String getUrl(String url) {
         if (getUseSandbox()) {
-            url = url.replace("api.mch.weixin.qq.com", "api.mch.weixin.qq.com/sandboxnew");
+            url = url.replace("exception.mch.weixin.qq.com", "exception.mch.weixin.qq.com/sandboxnew");
         }
         return url;
     }

@@ -1,6 +1,5 @@
 package com.callenled.pay.wechat.model;
 
-import com.callenled.pay.wechat.api.BaseWxPayModel;
 import com.callenled.util.GsonUtil;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.RandomStringUtils;

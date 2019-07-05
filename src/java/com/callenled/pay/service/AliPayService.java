@@ -22,13 +22,13 @@ import static com.alipay.api.AlipayConstants.CHARSET_UTF8;
  * @Author: Callenld
  * @Date: 19-4-29
  */
-public class AlipayServiceImpl {
+public class AliPayService {
 
     private BaseAlipayConfig config;
 
     private AlipayClient alipayClient;
 
-    public AlipayServiceImpl(BasePayConfig config) {
+    public AliPayService(BasePayConfig config) {
         this.config = (BaseAlipayConfig) config;
         this.alipayClient = new DefaultAlipayClient(this.config.getServerUrl(), this.config.getAppID(), this.config.getPrivateKey(), "json", CHARSET_UTF8, this.config.getPublicKey(), "RSA2");
     }

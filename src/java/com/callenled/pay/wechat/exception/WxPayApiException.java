@@ -1,4 +1,4 @@
-package com.callenled.pay.wechat.api;
+package com.callenled.pay.wechat.exception;
 
 /**
  * @Author: Callenld

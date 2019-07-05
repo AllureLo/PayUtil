@@ -4,12 +4,13 @@ import com.callenled.pay.config.BasePayConfig;
 import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.util.FieldUtil;
 import com.callenled.pay.util.WxPayUtil;
-import com.callenled.pay.wechat.api.*;
+import com.callenled.pay.wechat.exception.*;
+import com.callenled.pay.wechat.model.BaseWxPayModel;
+import com.callenled.pay.wechat.request.BaseWxPayRequest;
+import com.callenled.pay.wechat.response.BaseWxPayResponse;
 import com.callenled.util.HttpUtil;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.net.URISyntaxException;
 
 /**
  * @Author: Callenld

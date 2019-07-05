@@ -1,7 +1,7 @@
 package com.callenled.pay.util;
 
 import com.callenled.pay.annotations.MappingValueAnno;
-import com.callenled.pay.wechat.api.WxPayApiException;
+import com.callenled.pay.wechat.exception.WxPayApiException;
 import com.callenled.util.GsonUtil;
 import org.jdom.Document;
 import org.jdom.Element;

@@ -1,5 +1,7 @@
-package com.callenled.pay.wechat.api;
+package com.callenled.pay.wechat.request;
 
+import com.callenled.pay.wechat.model.BaseWxPayModel;
+import com.callenled.pay.wechat.response.BaseWxPayResponse;
 import com.callenled.util.HttpUtil.Https;
 
 /**

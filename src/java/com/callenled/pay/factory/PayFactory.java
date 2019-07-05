@@ -2,8 +2,8 @@ package com.callenled.pay.factory;
 
 import com.callenled.pay.config.BaseAlipayConfig;
 import com.callenled.pay.config.BaseWxPayConfig;
-import com.callenled.pay.service.AlipayServiceImpl;
-import com.callenled.pay.service.WxPayServiceImpl;
+import com.callenled.pay.service.AliPayService;
+import com.callenled.pay.service.WxPayService;
 
 /**
  * @Author: Callenld
@@ -21,8 +21,8 @@ public class PayFactory {
      * @param config 配置文件
      * @return wxPayService
      */
-    public static WxPayServiceImpl create(BaseWxPayConfig config) {
-        return new WxPayServiceImpl(config);
+    public static WxPayService create(BaseWxPayConfig config) {
+        return new WxPayService(config);
     }
 
     /**
@@ -30,7 +30,7 @@ public class PayFactory {
      * @param config 配置文件
      * @return alipayService
      */
-    public static AlipayServiceImpl create(BaseAlipayConfig config) {
-        return new AlipayServiceImpl(config);
+    public static AliPayService create(BaseAlipayConfig config) {
+        return new AliPayService(config);
     }
 }
