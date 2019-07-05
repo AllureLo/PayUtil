@@ -28,14 +28,8 @@ public class WxPayServiceImpl extends IWxPayService implements IPayService {
     @Override
     public Object appOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
         //封装请求数据
-        WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
-        model.setOutTradeNo(outTradeNo);
-        model.setSubject(subject);
-        model.setTotalAmount(totalAmount);
-        model.setNotifyUrl(notifyUrl);
-        model.setSpBillCreateIp(RequestUtil.getIpAddress(httpServletRequest));
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl, RequestUtil.getIpAddress(httpServletRequest));
         model.setTradeType(TRADE_TYPE_APP);
-        model.setNonceStr(RandomStringUtils.randomAscii(32));
         //请求参数
         WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest(model);
         //返回参数
@@ -63,14 +57,8 @@ public class WxPayServiceImpl extends IWxPayService implements IPayService {
     @Override
     public String scanOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
         //封装请求数据
-        WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
-        model.setOutTradeNo(outTradeNo);
-        model.setSubject(subject);
-        model.setTotalAmount(totalAmount);
-        model.setNotifyUrl(notifyUrl);
-        model.setSpBillCreateIp(RequestUtil.getIpAddress(httpServletRequest));
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl, RequestUtil.getIpAddress(httpServletRequest));
         model.setTradeType(TRADE_TYPE_NATIVE);
-        model.setNonceStr(RandomStringUtils.randomAscii(32));
         //请求参数
         WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest(model);
         WxPayUnifiedOrderResponse response;

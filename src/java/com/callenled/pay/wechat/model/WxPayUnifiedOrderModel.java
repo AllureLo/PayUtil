@@ -3,6 +3,7 @@ package com.callenled.pay.wechat.model;
 import com.callenled.pay.wechat.api.BaseWxPayModel;
 import com.callenled.util.GsonUtil;
 import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -354,5 +355,21 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         public void setAddress(String address) {
             this.address = address;
         }
+    }
+
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String ip) {
+        return create(outTradeNo, subject, totalAmount, notifyUrl, null, ip);
+    }
+
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, String ip) {
+        WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
+        model.setOutTradeNo(outTradeNo);
+        model.setSubject(subject);
+        model.setTotalAmount(totalAmount);
+        model.setNotifyUrl(notifyUrl);
+        model.setSpBillCreateIp(ip);
+        model.setNonceStr(RandomStringUtils.randomAscii(32));
+        model.setOpenid(openId);
+        return model;
     }
 }

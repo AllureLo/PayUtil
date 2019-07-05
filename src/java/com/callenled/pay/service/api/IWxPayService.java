@@ -48,15 +48,8 @@ public class IWxPayService {
      */
     public JsApiOrderModel jsApiOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
         //封装请求数据
-        WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
-        model.setOutTradeNo(outTradeNo);
-        model.setSubject(subject);
-        model.setTotalAmount(totalAmount);
-        model.setNotifyUrl(notifyUrl);
-        model.setSpBillCreateIp(RequestUtil.getIpAddress(httpServletRequest));
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl, openId, RequestUtil.getIpAddress(httpServletRequest));
         model.setTradeType(TRADE_TYPE_JSAPI);
-        model.setNonceStr(RandomStringUtils.randomAscii(32));
-        model.setOpenid(openId);
         //请求参数
         WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest(model);
         //返回参数
