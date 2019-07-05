@@ -357,17 +357,16 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         }
     }
 
-    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String ip) {
-        return create(outTradeNo, subject, totalAmount, notifyUrl, null, ip);
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl) {
+        return create(outTradeNo, subject, totalAmount, notifyUrl, null);
     }
 
-    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, String ip) {
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId) {
         WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
         model.setOutTradeNo(outTradeNo);
         model.setSubject(subject);
         model.setTotalAmount(totalAmount);
         model.setNotifyUrl(notifyUrl);
-        model.setSpBillCreateIp(ip);
         model.setNonceStr(RandomStringUtils.randomAscii(32));
         model.setOpenid(openId);
         return model;

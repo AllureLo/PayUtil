@@ -33,8 +33,8 @@ public class WxPayConfig extends BaseWxPayConfig {
     }
 
     @Override
-    public Boolean getUseSandbox() {
-        return null;
+    public boolean getUseSandbox() {
+        return true;
     }
 
     @Override

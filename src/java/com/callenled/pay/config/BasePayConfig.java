@@ -14,7 +14,7 @@ public abstract class BasePayConfig {
      * true 使用沙箱
      * @return
      */
-    public abstract Boolean getUseSandbox();
+    public abstract boolean getUseSandbox();
 
     /**
      * 通知域名 - 正式环境

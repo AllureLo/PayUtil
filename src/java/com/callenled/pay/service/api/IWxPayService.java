@@ -10,6 +10,7 @@ import com.callenled.pay.wechat.model.JsApiOrderModel;
 import com.callenled.pay.wechat.model.WxPayUnifiedOrderModel;
 import com.callenled.pay.wechat.request.WxPayUnifiedOrderRequest;
 import com.callenled.pay.wechat.response.WxPayUnifiedOrderResponse;
+import com.callenled.util.GsonUtil;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,7 @@ public class IWxPayService {
 
     /**
      * 外部商户小程序或公众号唤起快捷SDK创建订单并支付
+     *
      * @param outTradeNo 商户订单号
      * @param subject 交易标题
      * @param totalAmount 支付金额
@@ -46,10 +48,24 @@ public class IWxPayService {
      * @return orderModel
      * @throws PayApiException
      */
-    public JsApiOrderModel jsApiOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
-        //封装请求数据
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl, openId, RequestUtil.getIpAddress(httpServletRequest));
+    public String jsApiOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl, openId);
+        return jsApiOrder(model, httpServletRequest);
+    }
+
+    /**
+     * 外部商户小程序或公众号唤起快捷SDK创建订单并支付
+     *
+     * @param model 请求数据
+     * @param httpServletRequest http请求
+     * @return
+     * @throws PayApiException
+     */
+    public String jsApiOrder(WxPayUnifiedOrderModel model, HttpServletRequest httpServletRequest) throws PayApiException {
+        //交易类型
         model.setTradeType(TRADE_TYPE_JSAPI);
+        //终端IP
+        model.setSpBillCreateIp(RequestUtil.getIpAddress(httpServletRequest));
         //请求参数
         WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest(model);
         //返回参数
@@ -71,6 +87,6 @@ public class IWxPayService {
         } catch (WxPayApiException e) {
             throw new PayApiException(e.getMessage(), e);
         }
-        return orderModel;
+        return GsonUtil.gsonString(orderModel);
     }
 }
