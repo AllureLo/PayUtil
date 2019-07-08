@@ -7,10 +7,13 @@ import com.callenled.pay.util.RequestUtil;
 import com.callenled.pay.wechat.DefaultWxPayClient;
 import com.callenled.pay.wechat.WxPayClient;
 import com.callenled.pay.wechat.exception.WxPayApiException;
-import com.callenled.pay.wechat.model.AppOrderModel;
-import com.callenled.pay.wechat.model.JsApiOrderModel;
+import com.callenled.pay.service.model.AppOrderModel;
+import com.callenled.pay.service.model.JsApiOrderModel;
+import com.callenled.pay.wechat.model.WxPayCloseOrderModel;
 import com.callenled.pay.wechat.model.WxPayUnifiedOrderModel;
+import com.callenled.pay.wechat.request.WxPayCloseOrderRequest;
 import com.callenled.pay.wechat.request.WxPayUnifiedOrderRequest;
+import com.callenled.pay.wechat.response.WxPayCloseOrderResponse;
 import com.callenled.pay.wechat.response.WxPayUnifiedOrderResponse;
 import com.callenled.util.GsonUtil;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -42,14 +45,14 @@ public class WxPayService {
      * 外部商户APP唤起快捷SDK创建订单并支付
      *
      * @param outTradeNo 商户订单号
-     * @param subject 交易标题
+     * @param body 商品描述
      * @param totalAmount 支付金额
      * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
      * @return Object
      */
-    public String appOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl);
+    public String appOrder(String outTradeNo, String body, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalAmount, notifyUrl);
         return appOrder(model, httpServletRequest);
     }
 
@@ -94,14 +97,14 @@ public class WxPayService {
      * 创建订单并扫码支付
      *
      * @param outTradeNo 商户订单号
-     * @param subject 交易标题
+     * @param body 商品描述
      * @param totalAmount 支付金额
      * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
      * @return String
      */
-    public String scanOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl);
+    public String scanOrder(String outTradeNo, String body, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalAmount, notifyUrl);
         return scanOrder(model, httpServletRequest);
     }
 
@@ -134,7 +137,7 @@ public class WxPayService {
      * 外部商户小程序或公众号唤起快捷SDK创建订单并支付
      *
      * @param outTradeNo 商户订单号
-     * @param subject 交易标题
+     * @param body 商品描述
      * @param totalAmount 支付金额
      * @param notifyUrl 通知地址
      * @param openId 用户标识
@@ -142,8 +145,8 @@ public class WxPayService {
      * @return orderModel
      * @throws PayApiException
      */
-    public String jsApiOrder(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, subject, totalAmount, notifyUrl, openId);
+    public String jsApiOrder(String outTradeNo, String body, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalAmount, notifyUrl, openId);
         return jsApiOrder(model, httpServletRequest);
     }
 
@@ -182,5 +185,28 @@ public class WxPayService {
             throw new PayApiException(e.getMessage(), e);
         }
         return GsonUtil.gsonString(orderModel);
+    }
+
+    /**
+     * 关闭订单
+     *
+     * 注意：订单生成后不能马上调用关单接口，最短调用时间间隔为5分钟。
+     *
+     * @param outTradeNo 商户订单号
+     * @throws PayApiException
+     */
+    public void closeOrder(String outTradeNo) throws PayApiException {
+        //封装请求数据
+        WxPayCloseOrderModel model = new WxPayCloseOrderModel();
+        model.setOutTradeNo(outTradeNo);
+        model.setNonceStr(RandomStringUtils.random(32));
+        //request封装
+        WxPayCloseOrderRequest request = new WxPayCloseOrderRequest(model);
+
+        try {
+            wxPayClient.execute(request);
+        } catch (WxPayApiException e) {
+            throw new PayApiException(e.getMessage(), e);
+        }
     }
 }

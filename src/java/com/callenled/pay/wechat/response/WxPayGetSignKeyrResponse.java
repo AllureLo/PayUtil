@@ -1,5 +1,6 @@
 package com.callenled.pay.wechat.response;
 
+import com.callenled.pay.wechat.BaseWxPayResponse;
 import com.google.gson.annotations.SerializedName;
 
 /**

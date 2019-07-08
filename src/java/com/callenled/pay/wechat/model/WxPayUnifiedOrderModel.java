@@ -1,5 +1,6 @@
 package com.callenled.pay.wechat.model;
 
+import com.callenled.pay.wechat.BaseWxPayModel;
 import com.callenled.util.GsonUtil;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,10 +28,30 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
     private String mchId;
 
     /**
-     * 商品主题
+     * 设备号
+     *
+     * 自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"
+     */
+    @SerializedName(value = "device_info")
+    private String deviceInfo;
+
+    /**
+     * 签名类型
+     *
+     * 签名类型，目前支持HMAC-SHA256和MD5，默认为MD5
+     */
+    @SerializedName(value = "sign_type")
+    private String signType;
+
+    /**
+     * 商品描述
+     *
+     * 商品描述交易字段格式根据不同的应用场景按照以下格式：
+     *
+     * APP——需传入应用市场上的APP名字-实际商品名称，天天爱消除-游戏充值。
      */
     @SerializedName(value = "body")
-    private String subject;
+    private String body;
 
     /**
      * 商品详情
@@ -132,12 +153,28 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         return mchId;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getDeviceInfo() {
+        return deviceInfo;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setDeviceInfo(String deviceInfo) {
+        this.deviceInfo = deviceInfo;
+    }
+
+    public String getSignType() {
+        return signType;
+    }
+
+    public void setSignType(String signType) {
+        this.signType = signType;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public String getDetail() {
@@ -269,12 +306,12 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
     }
 
     @Override
-    public void setAppId(String appId) {
+    protected void setAppId(String appId) {
         this.appId = appId;
     }
 
     @Override
-    public void setMchId(String mchId) {
+    protected void setMchId(String mchId) {
         this.mchId = mchId;
     }
 
@@ -360,10 +397,10 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         return create(outTradeNo, subject, totalAmount, notifyUrl, null);
     }
 
-    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl, String openId) {
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String body, Double totalAmount, String notifyUrl, String openId) {
         WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
         model.setOutTradeNo(outTradeNo);
-        model.setSubject(subject);
+        model.setBody(body);
         model.setTotalAmount(totalAmount);
         model.setNotifyUrl(notifyUrl);
         model.setNonceStr(RandomStringUtils.randomAscii(32));

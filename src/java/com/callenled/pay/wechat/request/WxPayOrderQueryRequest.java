@@ -2,25 +2,25 @@ package com.callenled.pay.wechat.request;
 
 import com.callenled.pay.wechat.BaseWxPayModel;
 import com.callenled.pay.wechat.BaseWxPayRequest;
-import com.callenled.pay.wechat.model.WxPayUnifiedOrderModel;
-import com.callenled.pay.wechat.response.WxPayUnifiedOrderResponse;
+import com.callenled.pay.wechat.model.WxPayOrderQueryModel;
+import com.callenled.pay.wechat.response.WxPayCloseOrderResponse;
 import com.callenled.util.HttpUtil.Https;
 
 /**
  * @Author: Callenld
  * @Date: 19-4-29
  */
-public class WxPayUnifiedOrderRequest implements BaseWxPayRequest<WxPayUnifiedOrderResponse> {
+public class WxPayOrderQueryRequest implements BaseWxPayRequest<WxPayCloseOrderResponse> {
 
-    private WxPayUnifiedOrderModel model;
+    private WxPayOrderQueryModel model;
 
-    public WxPayUnifiedOrderRequest(WxPayUnifiedOrderModel model) {
+    public WxPayOrderQueryRequest(WxPayOrderQueryModel model) {
         this.model = model;
     }
 
     @Override
     public String getUrl() {
-        return "https://api.mch.weixin.qq.com/pay/unifiedorder";
+        return "https://api.mch.weixin.qq.com/pay/orderquery";
     }
 
     @Override
@@ -39,8 +39,8 @@ public class WxPayUnifiedOrderRequest implements BaseWxPayRequest<WxPayUnifiedOr
     }
 
     @Override
-    public Class<WxPayUnifiedOrderResponse> getClazz() {
-        return WxPayUnifiedOrderResponse.class;
+    public Class<WxPayCloseOrderResponse> getClazz() {
+        return WxPayCloseOrderResponse.class;
     }
 
     @Override

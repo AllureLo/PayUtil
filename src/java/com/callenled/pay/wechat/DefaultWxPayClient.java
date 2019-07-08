@@ -5,9 +5,6 @@ import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.util.FieldUtil;
 import com.callenled.pay.util.WxPayUtil;
 import com.callenled.pay.wechat.exception.*;
-import com.callenled.pay.wechat.model.BaseWxPayModel;
-import com.callenled.pay.wechat.request.BaseWxPayRequest;
-import com.callenled.pay.wechat.response.BaseWxPayResponse;
 import com.callenled.util.HttpUtil;
 
 import java.lang.reflect.Field;
@@ -48,25 +45,26 @@ public class DefaultWxPayClient implements WxPayClient {
         //生成xml
         String xml = WxPayUtil.object2Xml(model);
         //http请求微信接口
+        String result;
         if (request.isCert()) {
-            xml = HttpUtil.builder()
+            result = HttpUtil.builder()
                     .ajaxJson(xml)
                     .setSSLContext(config.getCertContext())
                     .doHttp(config.getUrl(request.getUrl()), request.getHttps())
                     .toJson();
         } else {
-            xml = HttpUtil.builder()
+            result = HttpUtil.builder()
                     .ajaxJson(xml)
                     .doHttp(config.getUrl(request.getUrl()), request.getHttps())
                     .toJson();
         }
-        BaseWxPayResponse response = WxPayUtil.xml2Object(xml, request.getClazz(), request.signature(), config.getKey());
+        T response = WxPayUtil.xml2Object(result, request.getClazz(), request.signature(), config.getKey());
         if (!response.isReturnSuccess()) {
             throw new WxPayApiException(response.getReturnMsg());
         } else if (!response.isResultSuccess()) {
             throw new WxPayApiException(response.getErrCode(), response.getErrCodeDes());
         }
-        return (T) response;
+        return response;
     }
 
     @Override

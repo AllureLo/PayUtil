@@ -1,4 +1,4 @@
-package com.callenled.pay.wechat.response;
+package com.callenled.pay.wechat;
 
 import com.google.gson.annotations.SerializedName;
 

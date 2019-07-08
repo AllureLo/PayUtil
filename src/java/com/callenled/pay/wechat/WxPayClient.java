@@ -1,8 +1,6 @@
 package com.callenled.pay.wechat;
 
 import com.callenled.pay.wechat.exception.WxPayApiException;
-import com.callenled.pay.wechat.request.BaseWxPayRequest;
-import com.callenled.pay.wechat.response.BaseWxPayResponse;
 
 /**
  * @Author: Callenld

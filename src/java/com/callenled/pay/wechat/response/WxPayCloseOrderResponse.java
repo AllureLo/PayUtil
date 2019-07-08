@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @Author: Callenld
  * @Date: 19-4-29
  */
-public class WxPayUnifiedOrderResponse extends BaseWxPayResponse {
+public class WxPayCloseOrderResponse extends BaseWxPayResponse {
     private static final long serialVersionUID = -4210135404813560807L;
 
     /**
@@ -23,12 +23,6 @@ public class WxPayUnifiedOrderResponse extends BaseWxPayResponse {
     private String mchId;
 
     /**
-     * 设备号
-     */
-    @SerializedName(value = "device_info")
-    private String deviceInfo;
-
-    /**
      * 随机字符串
      */
     @SerializedName(value = "nonce_str")
@@ -38,24 +32,6 @@ public class WxPayUnifiedOrderResponse extends BaseWxPayResponse {
      * 签名
      */
     private String sign;
-
-    /**
-     * 交易类型
-     */
-    @SerializedName(value = "trade_type")
-    private String tradeType;
-
-    /**
-     * 预支付交易会话标识
-     */
-    @SerializedName(value = "prepay_id")
-    private String prepayId;
-
-    /**
-     * 二维码链接
-     */
-    @SerializedName(value = "code_url")
-    private String codeUrl;
 
     public String getAppId() {
         return appId;
@@ -73,14 +49,6 @@ public class WxPayUnifiedOrderResponse extends BaseWxPayResponse {
         this.mchId = mchId;
     }
 
-    public String getDeviceInfo() {
-        return deviceInfo;
-    }
-
-    public void setDeviceInfo(String deviceInfo) {
-        this.deviceInfo = deviceInfo;
-    }
-
     public String getNonceStr() {
         return nonceStr;
     }
@@ -95,29 +63,5 @@ public class WxPayUnifiedOrderResponse extends BaseWxPayResponse {
 
     public void setSign(String sign) {
         this.sign = sign;
-    }
-
-    public String getTradeType() {
-        return tradeType;
-    }
-
-    public void setTradeType(String tradeType) {
-        this.tradeType = tradeType;
-    }
-
-    public String getPrepayId() {
-        return prepayId;
-    }
-
-    public void setPrepayId(String prepayId) {
-        this.prepayId = prepayId;
-    }
-
-    public String getCodeUrl() {
-        return codeUrl;
-    }
-
-    public void setCodeUrl(String codeUrl) {
-        this.codeUrl = codeUrl;
     }
 }

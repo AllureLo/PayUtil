@@ -6,10 +6,9 @@ package com.callenled.pay.service.exception;
  */
 public class PayApiException extends Exception {
     private static final long serialVersionUID = 3476038597797994828L;
-    private String errCode;
-    private String errMsg;
 
     public PayApiException() {
+        super();
     }
 
     public PayApiException(String message, Throwable cause) {
@@ -26,15 +25,5 @@ public class PayApiException extends Exception {
 
     public PayApiException(String errCode, String errMsg) {
         super(errCode + ":" + errMsg);
-        this.errCode = errCode;
-        this.errMsg = errMsg;
-    }
-
-    public String getErrCode() {
-        return this.errCode;
-    }
-
-    public String getErrMsg() {
-        return this.errMsg;
     }
 }

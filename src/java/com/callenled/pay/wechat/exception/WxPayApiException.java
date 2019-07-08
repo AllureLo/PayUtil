@@ -6,10 +6,9 @@ package com.callenled.pay.wechat.exception;
  */
 public class WxPayApiException extends Exception {
     private static final long serialVersionUID = -8211404497415955780L;
-    private String errCode;
-    private String errMsg;
 
     public WxPayApiException() {
+        super();
     }
 
     public WxPayApiException(String message, Throwable cause) {
@@ -26,15 +25,5 @@ public class WxPayApiException extends Exception {
 
     public WxPayApiException(String errCode, String errMsg) {
         super(errCode + ":" + errMsg);
-        this.errCode = errCode;
-        this.errMsg = errMsg;
-    }
-
-    public String getErrCode() {
-        return this.errCode;
-    }
-
-    public String getErrMsg() {
-        return this.errMsg;
     }
 }
