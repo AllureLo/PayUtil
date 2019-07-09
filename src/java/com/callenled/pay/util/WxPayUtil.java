@@ -107,11 +107,7 @@ public class WxPayUtil {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             String k = entry.getKey();
             Object v = entry.getValue();
-            if ("attach".equalsIgnoreCase(k) || "body".equalsIgnoreCase(k)) {
-                sb.append("<").append(k).append(">").append("<![CDATA[").append(v).append("]]></").append(k).append(">");
-            } else {
-                sb.append("<").append(k).append(">").append(v).append("</").append(k).append(">");
-            }
+            sb.append("<").append(k).append(">").append("<![CDATA[").append(v).append("]]></").append(k).append(">");
         }
         //生成签名
         String sign = createSign(map, key);
