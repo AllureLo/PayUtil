@@ -41,7 +41,7 @@ public abstract class BaseWxPayConfig extends BasePayConfig {
     public abstract String getMchID();
 
     /**
-     * 获取 正式 API 密钥
+     * 获取 商户平台设置的密钥
      *
      * @return API密钥
      */
