@@ -9,17 +9,17 @@ import com.callenled.pay.config.BaseWxPayConfig;
 public class WxPayConfig extends BaseWxPayConfig {
     @Override
     public String getAppID() {
-        return null;
+        return "wx4328742e0cc492c7";
     }
 
     @Override
     public String getMchID() {
-        return null;
+        return "1511911781";
     }
 
     @Override
     public String getAppKey() {
-        return null;
+        return "1511911781";
     }
 
     @Override
@@ -39,11 +39,11 @@ public class WxPayConfig extends BaseWxPayConfig {
 
     @Override
     public String getDomain() {
-        return null;
+        return "https://www.test.com";
     }
 
     @Override
     public String getSandboxDomain() {
-        return null;
+        return "https://www.test.com";
     }
 }

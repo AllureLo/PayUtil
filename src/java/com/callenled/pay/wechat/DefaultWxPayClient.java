@@ -39,11 +39,9 @@ public class DefaultWxPayClient implements WxPayClient {
         } catch (IllegalAccessException e) {
             throw new WxPayApiException(e.getMessage(), e);
         }
-        //签名
-        String sign = this.createSign(model);
-        model.setSign(sign);
-        //生成xml
-        String xml = WxPayUtil.object2Xml(model);
+        //生成带签名的xml
+        String xml = WxPayUtil.object2XmlWithCreateSign(model, config.getKey());
+        System.out.println(xml);
         //http请求微信接口
         String result;
         if (request.isCert()) {
@@ -58,11 +56,15 @@ public class DefaultWxPayClient implements WxPayClient {
                     .doHttp(config.getUrl(request.getUrl()), request.getHttps())
                     .toJson();
         }
-        T response = WxPayUtil.xml2Object(result, request.getClazz(), request.signature(), config.getKey());
+        T response = WxPayUtil.xml2Object(result, request.getClazz());
         if (!response.isReturnSuccess()) {
             throw new WxPayApiException(response.getReturnMsg());
         } else if (!response.isResultSuccess()) {
             throw new WxPayApiException(response.getErrCode(), response.getErrCodeDes());
+        }
+        //是否校验签名
+        if (request.signature()) {
+            WxPayUtil.verifySign(response, config.getKey());
         }
         return response;
     }

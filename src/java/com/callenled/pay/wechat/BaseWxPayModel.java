@@ -13,23 +13,10 @@ public abstract class BaseWxPayModel implements Serializable {
     private static final long serialVersionUID = -3144811100146361544L;
 
     /**
-     * 签名
-     */
-    private String sign;
-
-    /**
      * 随机字符串
      */
     @SerializedName(value = "nonce_str")
     private String nonceStr;
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
 
     public String getNonceStr() {
         return nonceStr;

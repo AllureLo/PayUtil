@@ -16,11 +16,10 @@ public class Demo{
         HttpServletRequest request = null;
         try {
             String result = PayFactory.create(wxPayConfig)
-                    .appOrder("", "", 100, "", request);
+                    .appOrder("2301293141", "测试", 100, "/test");
             System.out.println(result);
         } catch (PayApiException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
     }
 }

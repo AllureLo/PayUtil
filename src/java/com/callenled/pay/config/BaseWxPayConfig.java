@@ -114,10 +114,8 @@ public abstract class BaseWxPayConfig extends BasePayConfig {
         WxPayGetSignKeyModel model = new WxPayGetSignKeyModel();
         model.setMchId(getMchID());
         model.setNonceStr(RandomStringUtils.randomAlphabetic(32));
-        //签名
-        String sign = WxPayUtil.createSign(model, getAppKey());
-        model.setSign(sign);
-        String xml = WxPayUtil.object2Xml(model);
+        //生成带签名的xml
+        String xml = WxPayUtil.object2XmlWithCreateSign(model, getAppKey());
         String result = HttpUtil.builder()
                 .ajaxJson(xml)
                 .doHttp(SIGN_KEY, HttpUtil.Https.POST)

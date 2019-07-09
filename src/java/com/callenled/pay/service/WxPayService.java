@@ -48,6 +48,43 @@ public class WxPayService {
      * @param body 商品描述
      * @param totalFee 支付金额
      * @param notifyUrl 通知地址
+     * @return Object
+     */
+    public String appOrder(String outTradeNo, String body, int totalFee, String notifyUrl) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalFee, notifyUrl);
+        //终端IP
+        model.setSpBillCreateIp("127.0.0.1");
+        //请求参数
+        WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest(model);
+        //返回参数
+        AppOrderModel orderModel;
+        try {
+            //接口调用
+            WxPayUnifiedOrderResponse response = wxPayClient.execute(request);
+            //封装返回参数
+            orderModel = new AppOrderModel();
+            orderModel.setAppId(response.getAppId());
+            orderModel.setPartnerId(response.getMchId());
+            orderModel.setPrePayId(response.getPrepayId());
+            orderModel.setPackages("Sign=WXPay");
+            orderModel.setNonceStr(RandomStringUtils.randomAscii(32));
+            orderModel.setTimestamp(Long.toString(System.currentTimeMillis()).substring(0, 10));
+            //生成签名
+            String sign = wxPayClient.createSign(orderModel);
+            orderModel.setSign(sign);
+        } catch (WxPayApiException e) {
+            throw new PayApiException(e.getMessage(), e);
+        }
+        return GsonUtil.gsonString(orderModel);
+    }
+
+    /**
+     * 外部商户APP唤起快捷SDK创建订单并支付
+     *
+     * @param outTradeNo 商户订单号
+     * @param body 商品描述
+     * @param totalFee 支付金额
+     * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
      * @return Object
      */
@@ -199,7 +236,7 @@ public class WxPayService {
         //封装请求数据
         WxPayCloseOrderModel model = new WxPayCloseOrderModel();
         model.setOutTradeNo(outTradeNo);
-        model.setNonceStr(RandomStringUtils.random(32));
+        model.setNonceStr(RandomStringUtils.randomAlphabetic(32));
         //request封装
         WxPayCloseOrderRequest request = new WxPayCloseOrderRequest(model);
 

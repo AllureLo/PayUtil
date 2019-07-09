@@ -394,7 +394,7 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         model.setBody(body);
         model.setTotalFee(totalFee);
         model.setNotifyUrl(notifyUrl);
-        model.setNonceStr(RandomStringUtils.randomAscii(32));
+        model.setNonceStr(RandomStringUtils.randomAlphabetic(32));
         model.setOpenid(openId);
         return model;
     }
