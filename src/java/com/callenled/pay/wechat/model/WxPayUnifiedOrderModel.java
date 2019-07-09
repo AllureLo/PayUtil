@@ -316,12 +316,11 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
     }
 
     public void setSceneInfo(String id, String name, String areaCode, String address) {
-        SceneInfo info = new SceneInfo(id, name, areaCode, address);
-        this.setSceneInfo(GsonUtil.gsonString(info));
+        StoreInfo storeInfo = new StoreInfo(id, name, areaCode, address);
+        this.setSceneInfo(storeInfo.toString());
     }
 
-    public class SceneInfo implements Serializable {
-
+    public class StoreInfo implements Serializable {
         private static final long serialVersionUID = 4193641895780485369L;
         /**
          * 门店id
@@ -344,7 +343,7 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
          */
         private String address;
 
-        public SceneInfo(String id, String name, String areaCode, String address) {
+        public StoreInfo(String id, String name, String areaCode, String address) {
             this.id = id;
             this.name = name;
             this.areaCode = areaCode;
@@ -381,6 +380,16 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
 
         public void setAddress(String address) {
             this.address = address;
+        }
+
+        @Override
+        public String toString() {
+            return "{\"store_info\":{" +
+                    "\"id=\":\"" + id + "\"" +
+                    ",\"name=\":\"" + name + "\"" +
+                    ",\"areaCode=\":\"" + areaCode + "\"" +
+                    ",\"address=\":\"" + address + "\"" +
+                    '}';
         }
     }
 
