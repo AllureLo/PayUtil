@@ -46,13 +46,13 @@ public class WxPayService {
      *
      * @param outTradeNo 商户订单号
      * @param body 商品描述
-     * @param totalAmount 支付金额
+     * @param totalFee 支付金额
      * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
      * @return Object
      */
-    public String appOrder(String outTradeNo, String body, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalAmount, notifyUrl);
+    public String appOrder(String outTradeNo, String body, int totalFee, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalFee, notifyUrl);
         return appOrder(model, httpServletRequest);
     }
 
@@ -98,13 +98,13 @@ public class WxPayService {
      *
      * @param outTradeNo 商户订单号
      * @param body 商品描述
-     * @param totalAmount 支付金额
+     * @param totalFee 支付金额
      * @param notifyUrl 通知地址
      * @param httpServletRequest http请求
      * @return String
      */
-    public String scanOrder(String outTradeNo, String body, Double totalAmount, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalAmount, notifyUrl);
+    public String scanOrder(String outTradeNo, String body, int totalFee, String notifyUrl, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalFee, notifyUrl);
         return scanOrder(model, httpServletRequest);
     }
 
@@ -138,15 +138,15 @@ public class WxPayService {
      *
      * @param outTradeNo 商户订单号
      * @param body 商品描述
-     * @param totalAmount 支付金额
+     * @param totalFee 支付金额
      * @param notifyUrl 通知地址
      * @param openId 用户标识
      * @param httpServletRequest http请求
      * @return orderModel
      * @throws PayApiException
      */
-    public String jsApiOrder(String outTradeNo, String body, Double totalAmount, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
-        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalAmount, notifyUrl, openId);
+    public String jsApiOrder(String outTradeNo, String body, int totalFee, String notifyUrl, String openId, HttpServletRequest httpServletRequest) throws PayApiException {
+        WxPayUnifiedOrderModel model = WxPayUnifiedOrderModel.create(outTradeNo, body, totalFee, notifyUrl, openId);
         return jsApiOrder(model, httpServletRequest);
     }
 

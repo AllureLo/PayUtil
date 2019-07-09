@@ -16,7 +16,7 @@ public class Demo{
         HttpServletRequest request = null;
         try {
             String result = PayFactory.create(wxPayConfig)
-                    .appOrder("", "", 100.0, "", request);
+                    .appOrder("", "", 100, "", request);
             System.out.println(result);
         } catch (PayApiException e) {
             e.printStackTrace();

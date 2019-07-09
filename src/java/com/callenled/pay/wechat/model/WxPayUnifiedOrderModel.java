@@ -315,15 +315,6 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         this.mchId = mchId;
     }
 
-    public void setTotalAmount(Double totalAmount) {
-        //乘数
-        BigDecimal multiplier = new BigDecimal(100);
-        //被乘数
-        BigDecimal multiplicand = new BigDecimal(totalAmount);
-        multiplicand = multiplicand.multiply(multiplier);
-        this.setTotalFee(multiplicand.intValue());
-    }
-
     public void setSceneInfo(String id, String name, String areaCode, String address) {
         SceneInfo info = new SceneInfo(id, name, areaCode, address);
         this.setSceneInfo(GsonUtil.gsonString(info));
@@ -393,15 +384,15 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
         }
     }
 
-    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, Double totalAmount, String notifyUrl) {
-        return create(outTradeNo, subject, totalAmount, notifyUrl, null);
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String subject, int totalFee, String notifyUrl) {
+        return create(outTradeNo, subject, totalFee, notifyUrl, null);
     }
 
-    public static WxPayUnifiedOrderModel create(String outTradeNo, String body, Double totalAmount, String notifyUrl, String openId) {
+    public static WxPayUnifiedOrderModel create(String outTradeNo, String body, int totalFee, String notifyUrl, String openId) {
         WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
         model.setOutTradeNo(outTradeNo);
         model.setBody(body);
-        model.setTotalAmount(totalAmount);
+        model.setTotalFee(totalFee);
         model.setNotifyUrl(notifyUrl);
         model.setNonceStr(RandomStringUtils.randomAscii(32));
         model.setOpenid(openId);
