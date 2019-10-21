@@ -4,6 +4,8 @@ import com.callenled.pay.config.BaseAlipayConfig;
 import com.callenled.pay.config.BaseWxPayConfig;
 import com.callenled.pay.service.AliPayService;
 import com.callenled.pay.service.WxPayService;
+import com.callenled.pay.service.impl.AliPayServiceImpl;
+import com.callenled.pay.service.impl.WxPayServiceImpl;
 
 /**
  * @Author: Callenld
@@ -17,20 +19,44 @@ public class PayFactory {
     private PayFactory() {}
 
     /**
+     * 微信支付service
+     */
+    private static WxPayService wxPayService;
+
+    /**
+     * 创建微信支付服务
+     * @param config 微信支付配置文件
+     */
+    public static void createWxPay(BaseWxPayConfig config) {
+        wxPayService = new WxPayServiceImpl(config);
+    }
+
+    /**
      * 微信支付接口服务
-     * @param config 配置文件
      * @return wxPayService
      */
-    public static WxPayService create(BaseWxPayConfig config) {
-        return new WxPayService(config);
+    public static WxPayService buildWxPay() {
+        return wxPayService;
+    }
+
+    /**
+     * 支付宝支付service
+     */
+    private static AliPayService aliPayService;
+
+    /**
+     * 创建支付宝支付服务
+     * @param config 支付宝支付支付配置文件
+     */
+    public static void createAliPay(BaseAlipayConfig config) {
+        aliPayService = new AliPayServiceImpl(config);
     }
 
     /**
      * 支付宝接口服务
-     * @param config 配置文件
      * @return alipayService
      */
-    public static AliPayService create(BaseAlipayConfig config) {
-        return new AliPayService(config);
+    public static AliPayService buildAliPay() {
+        return aliPayService;
     }
 }

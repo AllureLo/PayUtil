@@ -1,4 +1,4 @@
-package com.callenled.pay.service.exception;
+package com.callenled.pay.exception;
 
 /**
  * @Author: Callenld

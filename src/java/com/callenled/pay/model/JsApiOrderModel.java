@@ -1,4 +1,4 @@
-package com.callenled.pay.service.model;
+package com.callenled.pay.model;
 
 import com.google.gson.annotations.SerializedName;
 
