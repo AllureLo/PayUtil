@@ -24,19 +24,12 @@ public abstract class BasePayConfig {
     public abstract String getDomain();
 
     /**
-     * 通知域名 - 沙箱环境
-     *
-     * @return
-     */
-    public abstract String getSandboxDomain();
-
-    /**
      * 获取通知地址
      * @param api
      *
      * @return 知地址
      */
     public String getNotifyUrl(String api) {
-        return (getUseSandbox() ? getSandboxDomain() : getDomain()) + api;
+        return getDomain() + api;
     }
 }

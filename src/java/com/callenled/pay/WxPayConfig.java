@@ -41,9 +41,4 @@ public class WxPayConfig extends BaseWxPayConfig {
     public String getDomain() {
         return "https://www.test.com";
     }
-
-    @Override
-    public String getSandboxDomain() {
-        return "https://www.test.com";
-    }
 }
