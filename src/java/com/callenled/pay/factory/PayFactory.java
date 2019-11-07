@@ -16,7 +16,8 @@ public class PayFactory {
     /**
      * 私有化构造方法
      */
-    private PayFactory() {}
+    private PayFactory() {
+    }
 
     /**
      * 微信支付service
@@ -25,6 +26,7 @@ public class PayFactory {
 
     /**
      * 创建微信支付服务
+     *
      * @param config 微信支付配置文件
      */
     public static void createWxPay(BaseWxPayConfig config) {
@@ -33,6 +35,7 @@ public class PayFactory {
 
     /**
      * 微信支付接口服务
+     *
      * @return wxPayService
      */
     public static WxPayService buildWxPay() {
@@ -46,6 +49,7 @@ public class PayFactory {
 
     /**
      * 创建支付宝支付服务
+     *
      * @param config 支付宝支付支付配置文件
      */
     public static void createAliPay(BaseAlipayConfig config) {
@@ -54,6 +58,7 @@ public class PayFactory {
 
     /**
      * 支付宝接口服务
+     *
      * @return alipayService
      */
     public static AliPayService buildAliPay() {

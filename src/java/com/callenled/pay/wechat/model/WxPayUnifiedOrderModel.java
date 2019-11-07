@@ -29,7 +29,7 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
 
     /**
      * 设备号
-     *
+     * <p>
      * 自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"
      */
     @SerializedName(value = "device_info")
@@ -37,7 +37,7 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
 
     /**
      * 签名类型
-     *
+     * <p>
      * 签名类型，目前支持HMAC-SHA256和MD5，默认为MD5
      */
     @SerializedName(value = "sign_type")
@@ -45,9 +45,9 @@ public class WxPayUnifiedOrderModel extends BaseWxPayModel {
 
     /**
      * 商品描述
-     *
+     * <p>
      * 商品描述交易字段格式根据不同的应用场景按照以下格式：
-     *
+     * <p>
      * APP——需传入应用市场上的APP名字-实际商品名称，天天爱消除-游戏充值。
      */
     @SerializedName(value = "body")

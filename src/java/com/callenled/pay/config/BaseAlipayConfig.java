@@ -61,7 +61,7 @@ public abstract class BaseAlipayConfig extends BasePayConfig {
      *
      * @return App ID
      */
-    public String getAppID(){
+    public String getAppID() {
         return getUseSandbox() ? getSandboxAppID() : getFormalAppID();
     }
 

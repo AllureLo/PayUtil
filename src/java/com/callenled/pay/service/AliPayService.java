@@ -13,10 +13,10 @@ public interface AliPayService extends PayService {
     /**
      * 外部商户APP唤起快捷SDK创建订单并支付
      *
-     * @param outTradeNo 商户订单号
-     * @param subject 交易标题
+     * @param outTradeNo  商户订单号
+     * @param subject     交易标题
      * @param totalAmount 支付金额
-     * @param notifyUrl 通知地址
+     * @param notifyUrl   通知地址
      * @return Object
      * @throws PayApiException
      */
@@ -25,7 +25,7 @@ public interface AliPayService extends PayService {
     /**
      * 外部商户APP唤起快捷SDK创建订单并支付
      *
-     * @param model 请求数据封装
+     * @param model     请求数据封装
      * @param notifyUrl 通知地址
      * @return
      * @throws PayApiException
@@ -35,10 +35,10 @@ public interface AliPayService extends PayService {
     /**
      * 创建订单并扫码支付
      *
-     * @param outTradeNo 商户订单号
-     * @param subject 交易标题
+     * @param outTradeNo  商户订单号
+     * @param subject     交易标题
      * @param totalAmount 支付金额
-     * @param notifyUrl 通知地址
+     * @param notifyUrl   通知地址
      * @return String
      * @throws PayApiException
      */
@@ -47,7 +47,7 @@ public interface AliPayService extends PayService {
     /**
      * 创建订单并扫码支付
      *
-     * @param model 请求数据封装
+     * @param model     请求数据封装
      * @param notifyUrl 通知地址
      * @return
      * @throws PayApiException

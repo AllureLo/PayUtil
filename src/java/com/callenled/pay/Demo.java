@@ -9,7 +9,7 @@ import com.callenled.pay.wechat.model.WxPayUnifiedOrderModel;
  * @Author: Callenld
  * @Date: 19-4-28
  */
-public class Demo{
+public class Demo {
     public static void main(String[] args) {
 /*        WxPayUnifiedOrderModel model = new WxPayUnifiedOrderModel();
         model.setSceneInfo("1", "测试", "ce", "as");

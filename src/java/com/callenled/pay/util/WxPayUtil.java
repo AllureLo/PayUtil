@@ -23,11 +23,12 @@ public class WxPayUtil {
 
     /**
      * 生成签名
+     *
      * @param object 对象参数
-     * @param key 签名密钥
+     * @param key    签名密钥
      * @return
      */
-    public static String createSign(Object object, String key){
+    public static String createSign(Object object, String key) {
         //序列化-反序列化转换key值
         String json = GsonUtil.gsonString(object);
         Map<String, Object> map = GsonUtil.gsonToMaps(json);
@@ -36,11 +37,12 @@ public class WxPayUtil {
 
     /**
      * 生成签名
+     *
      * @param map 对象参数
      * @param key 签名密钥
      * @return
      */
-    public static String createSign(Map<String, Object> map, String key){
+    public static String createSign(Map<String, Object> map, String key) {
         // 对所有传入参数按照字段名的 ASCII 码从小到大排序（字典序）
         List<Map.Entry<String, Object>> infoIds = new ArrayList<>(map.entrySet());
         infoIds.sort(Comparator.comparing(Map.Entry::getKey));
@@ -49,8 +51,9 @@ public class WxPayUtil {
 
     /**
      * 生成签名
+     *
      * @param collection 集合
-     * @param key 签名密钥
+     * @param key        签名密钥
      * @return
      */
     public static String createSign(Collection<Map.Entry<String, Object>> collection, String key) {
@@ -74,7 +77,7 @@ public class WxPayUtil {
      * 校验签名
      *
      * @param object 对象参数
-     * @param key 签名密钥
+     * @param key    签名密钥
      * @throws WxPayApiException
      */
     public static void verifySign(Object object, String key) throws WxPayApiException {
@@ -93,7 +96,7 @@ public class WxPayUtil {
 
     /**
      * 将封装好的参数转换成Xml格式类型的字符串
-     *
+     * <p>
      * 生成md5签名
      *
      * @param object 对象参数
@@ -118,7 +121,8 @@ public class WxPayUtil {
 
     /**
      * xml解析转换成object
-     * @param xml 报表
+     *
+     * @param xml   报表
      * @param clazz 对象
      * @throws WxPayApiException
      */

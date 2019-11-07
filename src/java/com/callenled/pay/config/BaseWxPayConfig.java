@@ -63,8 +63,8 @@ public abstract class BaseWxPayConfig extends BasePayConfig {
 
     /**
      * 正式-沙箱环境 微信接口url
-     * @param url 微信接口url
      *
+     * @param url 微信接口url
      * @return url
      */
     public String getUrl(String url) {

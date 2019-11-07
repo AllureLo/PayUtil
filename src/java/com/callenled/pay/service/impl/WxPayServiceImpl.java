@@ -31,9 +31,9 @@ public class WxPayServiceImpl implements WxPayService {
      * JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付，统一下单接口trade_type的传参可参考这里
      * MICROPAY--刷卡支付，刷卡支付有单独的支付接口，不调用统一下单接口
      */
-    private static final String TRADE_TYPE_JSAPI =  "JSAPI";
-    private static final String TRADE_TYPE_APP =  "APP";
-    private static final String TRADE_TYPE_NATIVE =  "NATIVE";
+    private static final String TRADE_TYPE_JSAPI = "JSAPI";
+    private static final String TRADE_TYPE_APP = "APP";
+    private static final String TRADE_TYPE_NATIVE = "NATIVE";
 
     private WxPayClient wxPayClient;
 
@@ -44,10 +44,10 @@ public class WxPayServiceImpl implements WxPayService {
     /**
      * 外部商户APP唤起快捷SDK创建订单并支付
      *
-     * @param outTradeNo 商户订单号
-     * @param body 商品描述
-     * @param totalFee 支付金额
-     * @param notifyUrl 通知地址
+     * @param outTradeNo         商户订单号
+     * @param body               商品描述
+     * @param totalFee           支付金额
+     * @param notifyUrl          通知地址
      * @param httpServletRequest http请求
      * @return Object
      */
@@ -60,7 +60,7 @@ public class WxPayServiceImpl implements WxPayService {
     /**
      * 外部商户APP唤起快捷SDK创建订单并支付
      *
-     * @param model 请求数据封装
+     * @param model              请求数据封装
      * @param httpServletRequest http请求
      * @return
      * @throws PayApiException
@@ -98,10 +98,10 @@ public class WxPayServiceImpl implements WxPayService {
     /**
      * 创建订单并扫码支付
      *
-     * @param outTradeNo 商户订单号
-     * @param body 商品描述
-     * @param totalFee 支付金额
-     * @param notifyUrl 通知地址
+     * @param outTradeNo         商户订单号
+     * @param body               商品描述
+     * @param totalFee           支付金额
+     * @param notifyUrl          通知地址
      * @param httpServletRequest http请求
      * @return String
      */
@@ -114,7 +114,7 @@ public class WxPayServiceImpl implements WxPayService {
     /**
      * 创建订单并扫码支付
      *
-     * @param model 请求数据封装
+     * @param model              请求数据封装
      * @param httpServletRequest http请求
      * @return
      * @throws PayApiException
@@ -140,11 +140,11 @@ public class WxPayServiceImpl implements WxPayService {
     /**
      * 外部商户小程序或公众号唤起快捷SDK创建订单并支付
      *
-     * @param outTradeNo 商户订单号
-     * @param body 商品描述
-     * @param totalFee 支付金额
-     * @param notifyUrl 通知地址
-     * @param openId 用户标识
+     * @param outTradeNo         商户订单号
+     * @param body               商品描述
+     * @param totalFee           支付金额
+     * @param notifyUrl          通知地址
+     * @param openId             用户标识
      * @param httpServletRequest http请求
      * @return orderModel
      * @throws PayApiException
@@ -157,7 +157,7 @@ public class WxPayServiceImpl implements WxPayService {
     /**
      * 外部商户小程序或公众号唤起快捷SDK创建订单并支付
      *
-     * @param model 请求数据
+     * @param model              请求数据
      * @param httpServletRequest http请求
      * @return
      * @throws PayApiException
@@ -194,7 +194,7 @@ public class WxPayServiceImpl implements WxPayService {
 
     /**
      * 关闭订单
-     *
+     * <p>
      * 注意：订单生成后不能马上调用关单接口，最短调用时间间隔为5分钟。
      *
      * @param outTradeNo 商户订单号

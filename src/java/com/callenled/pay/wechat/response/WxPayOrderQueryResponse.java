@@ -58,7 +58,7 @@ public class WxPayOrderQueryResponse extends BaseWxPayResponse {
 
     /**
      * 交易状态
-     *
+     * <p>
      * SUCCESS—支付成功
      * REFUND—转入退款
      * NOTPAY—未支付

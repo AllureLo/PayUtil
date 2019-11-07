@@ -14,7 +14,7 @@ public abstract class BaseWxPayResponse implements Serializable {
     private static final String SUCCESS = "SUCCESS";
     /**
      * 返回状态码 SUCCESS/FAIL
-     *
+     * <p>
      * 此字段是通信标识，非交易标识，交易是否成功需要查看trade_state来判断
      */
     @SerializedName(value = "return_code")

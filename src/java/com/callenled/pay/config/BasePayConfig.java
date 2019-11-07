@@ -10,8 +10,9 @@ public abstract class BasePayConfig {
 
     /**
      * 是否使用沙箱测试
-     *
+     * <p>
      * true 使用沙箱
+     *
      * @return
      */
     public abstract boolean getUseSandbox();
@@ -25,8 +26,8 @@ public abstract class BasePayConfig {
 
     /**
      * 获取通知地址
-     * @param api
      *
+     * @param api
      * @return 知地址
      */
     public String getNotifyUrl(String api) {

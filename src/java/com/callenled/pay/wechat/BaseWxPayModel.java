@@ -28,6 +28,7 @@ public abstract class BaseWxPayModel implements Serializable {
 
     /**
      * 微信支付分配的公众账号ID
+     *
      * @param appId 公众账号ID
      * @return
      */
@@ -35,6 +36,7 @@ public abstract class BaseWxPayModel implements Serializable {
 
     /**
      * 微信支付分配的商户号
+     *
      * @param mchId 商户ID
      * @return
      */

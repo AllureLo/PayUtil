@@ -13,13 +13,14 @@ public class FieldUtil {
 
     /**
      * 获取自身或者继承的field
+     *
      * @param object
      * @param fieldName
      * @return
      */
-    public static Field getDeclaredField(Object object, String fieldName){
-        Class<?> clazz = object.getClass() ;
-        for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
+    public static Field getDeclaredField(Object object, String fieldName) {
+        Class<?> clazz = object.getClass();
+        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
             try {
                 return clazz.getDeclaredField(fieldName);
             } catch (Exception e) {
@@ -32,16 +33,17 @@ public class FieldUtil {
 
     /**
      * 获取自身以及父类的属性
+     *
      * @param object
      * @return
      */
-    public static List<Field> getDeclaredFields(Object object){
+    public static List<Field> getDeclaredFields(Object object) {
         List<Field> fields = new ArrayList<>();
-        Class<?> clazz = object.getClass() ;
-        for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
+        Class<?> clazz = object.getClass();
+        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
             try {
                 Field[] arrField = clazz.getDeclaredFields();
-                if(arrField.length > 0){
+                if (arrField.length > 0) {
                     fields.addAll(Arrays.asList(arrField));
                 }
             } catch (Exception e) {
